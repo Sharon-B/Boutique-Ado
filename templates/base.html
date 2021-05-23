@@ -65,7 +65,7 @@
             </div>
           </form>
         </div>
-        <!-- Dropdown -->
+        <!-- Dropdown - My Account -->
         <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
           <ul class="list-inline list-unstyled text-center text-lg-right my-0">
             <li class="list-inline-item dropdown">
@@ -91,7 +91,7 @@
                 {% endif %}
             </div>
             </li>
-            <!-- FShopping Bag -->
+            <!-- Shopping Bag -->
             <li class="list-inline-item">
               <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="">
                 <div class="text-center">
@@ -108,6 +108,23 @@
             </li>
           </ul>
         </div>
+      </div>
+      <!-- Navigation -->
+      <div class="row bg-white">
+        <nav class="navbar navbar-expand-lg navbar-light w-100">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" 
+            aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          {% include 'includes/mobile_top_header.html' %}
+          {% include 'includes/main_nav.html' %}
+        </nav>
+      </div>
+      <!-- Delivery Banner -->
+      <div id="delivery-banner" class="row text-center">
+        <div class="col bg-black text-white">
+            <h4 class="logo-font my-1">Free delivery on orders over ${{ free_delivery_threshold }}!</h4>                
+        </div>            
       </div>
     </header>
 
