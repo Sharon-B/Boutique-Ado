@@ -3,6 +3,10 @@ from django.db import models
 
 # Create your models here.
 class Category(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'Categories'
+
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
@@ -14,6 +18,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+
     # category field is a foreign key to the category model, allow it to be null in the database and blank in forms
     # and if a category is deleted set any products that use it to have null for this field
     # rather than deleting the product.
