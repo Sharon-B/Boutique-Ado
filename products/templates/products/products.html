@@ -61,29 +61,29 @@
                         </div>
                         <!-- Create a hr between each row of cards however each card is a col inside a single row
                             so the no of products in each row will change depending on the screen size -->
-                        <!-- only displays on x-small screens, 1 product (col) per row -->
+                        <!-- only displays on x-small screens, 1 product (col) per row! -->
                         {% if forloop.counter|divisibleby:1 %}
                             <div class="col-12 d-sm-none mb-5">
                                 <hr>
                             </div>
                         {% endif %}
-                        <!-- only displays on small & medium screens, 2 products (cols) per row -->                       
+                        <!-- only displays on small & medium screens, 2 products (cols) per row! -->                       
                         {% if forloop.counter|divisibleby:2 %}
                             <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
                                 <hr>
                             </div>
                         {% endif %}
-                        <!-- only displays on large screens, 3 products (cols) per row -->
+                        <!-- only displays on large screens, 3 products (cols) per row! -->
                         {% if forloop.counter|divisibleby:3 %}
                             <div class="col-12 d-none d-lg-block d-xl-none mb-5">
                                 <hr>
                             </div>
                         {% endif %}
-                        <!-- only displays on xl screens, 4 products (cols) per row -->
+                        <!-- only displays on xl screens, 4 products (cols) per row! -->
                         {% if forloop.counter|divisibleby:4 %}
                             <div class="col-12 d-none d-xl-block mb-5">
                                 <hr>
-                            </div>
+                            </div>S
                         {% endif %}
                     {% endfor %}
                 </div>
