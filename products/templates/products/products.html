@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- Page header pushes the top of the page down to the bottom of the main navbar & site header -->
+{% block page_header %}
+    <div class="header-container container">
+        <div class="row">
+            <div class="col">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <!-- products template variable is available to us from the context of our all_products view -->
+            <div class="col">
+                {{ products }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
