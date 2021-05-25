@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 from .models import Product, Category
+from django.db.models.functions import Lower
 
 
 # Create your views here.
@@ -11,12 +12,29 @@ def all_products(request):
     """ A view to show all products, including sorting and search queries """
 
     products = Product.objects.all()        # return all products
-    # start with query set to none:
+
+    # start with query & other variables set to none:
     query = None
-     # start with categories set to none:
     categories = None
+    sort = None
+    direction = None
 
     if request.GET:
+        # Sorting:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'name':
+                sortkey = 'lower_name'      # rename sortkey to lower_name
+                products = products.annotate(lower_name=Lower('name'))
+
+            if direction in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+
+            products = products.order_by(sortkey)   # sort the products
+
         # Filter by category:
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
@@ -32,16 +50,19 @@ def all_products(request):
                     request, "You didn't enter any search criteria!")
                 return redirect(reverse('products'))
 
-            # if the query is not blank
+            # Otherwise if the query is not blank
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
+
+    current_sorting = f'{sort}_{direction}'
 
     # add our products to the context so they will be available in the template
     # add query to the context for search functionality
     context = {
         'products': products,
         'search_term': query,
-        'current_categories': categories
+        'current_categories': categories,
+        'current_sorting': current_sorting
     }
 
     return render(request, 'products/products.html', context)
