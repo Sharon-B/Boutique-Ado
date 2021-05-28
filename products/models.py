@@ -18,7 +18,6 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-
     # category field is a foreign key to the category model, allow it to be
     # null in the database and blank in forms and if a category is deleted
     # set any products that use it to have null for this field
@@ -29,6 +28,7 @@ class Product(models.Model):
     sku = models.CharField(max_length=254, null=True, blank=True)
     name = models.CharField(max_length=254)
     description = models.TextField()
+    has_sizes = models.BooleanField(default=False, null=True, blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     rating = models.DecimalField(
         max_digits=6, decimal_places=2, null=True, blank=True)
