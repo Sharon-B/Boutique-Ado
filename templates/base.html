@@ -132,6 +132,19 @@
 
     {% if messages %}
         <div class="message-container">
+          {% for message in messages %}
+            {% with message.level as level %}
+              {% if level == 40 %}
+                {% include 'includes/toasts/toast_error.html' %}
+              {% elif level == 30 %}
+                {% include 'includes/toasts/toast_warning.html' %}
+              {% elif level == 25 %}
+                {% include 'includes/toasts/toast_success.html' %}
+              {% else %}
+                {% include 'includes/toasts/toast_info.html' %}
+              {% endif %}
+            {% endwith %}
+          {% endfor %}
         </div>
     {% endif %}
 
@@ -142,6 +155,43 @@
     {% endblock %}
     
     {% block postloadjs %}
+    <script type="text/javascript">
+      // $('.toast').toast('show');
+
+      
+      function showToast() {
+        var toastEl = document.querySelector(".toast");
+        new bootstrap.Toast(toastEl).show();
+      }
+
+      showToast();
+
+
+      // $(document).ready(function() {
+      //   $(".toast").toast('show');
+      // });
+
+      // toastEl.toast.show();
+      
+      // document.querySelector("#basicToastBtn").onclick = function() {
+      // new bootstrap.Toast(document.querySelector('#basicToast')).show();
+
+      // $('.toast').toast.show();
+
+      // window.onload = function() {
+      //   var toast = document.querySelector(".toast");
+      //   toast.show();
+      // };
+    
+      // var toast = document.querySelector(".toast");
+      // toast.addEventListener('show.bs.toast', function (event) {
+      //   toast.show()
+      // })
+      
+
+
+
+    </script>
     {% endblock %}
 
   </body>
