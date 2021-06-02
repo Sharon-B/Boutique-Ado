@@ -45,11 +45,11 @@ INSTALLED_APPS = [
     'home',
     'products',
     'bag',
-    'checkout'
+    'checkout',
 
     # Other
     'crispy_forms',
-    'crispy_bootstrap5',
+    'crispy_bootstrap5'
 ]
 
 MIDDLEWARE = [
@@ -82,7 +82,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',   # required by allauth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.media'      # media context processor
+                'django.template.context_processors.media',      # media context processor
                 'bag.contexts.bag_contents'             # Allows access to the bag contents across the entire site
             ],
             'builtins': [
