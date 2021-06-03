@@ -32,8 +32,9 @@
       <!-- Font Awesome -->
       <script src="https://kit.fontawesome.com/6ce9d8c658.js" crossorigin="anonymous"></script>
       <!-- Bootstrap Bundle with Popper -->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
-      </script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+      <!-- Stripe -->
+      <script src="https://js.stripe.com/v3/"></script>
     {% endblock %}
 
     {% block extra_js %}
@@ -156,40 +157,13 @@
     
     {% block postloadjs %}
     <script type="text/javascript">
-      // $('.toast').toast('show');
 
-      
       function showToast() {
         var toastEl = document.querySelector(".toast");
         new bootstrap.Toast(toastEl).show();
       }
 
       showToast();
-
-
-      // $(document).ready(function() {
-      //   $(".toast").toast('show');
-      // });
-
-      // toastEl.toast.show();
-      
-      // document.querySelector("#basicToastBtn").onclick = function() {
-      // new bootstrap.Toast(document.querySelector('#basicToast')).show();
-
-      // $('.toast').toast.show();
-
-      // window.onload = function() {
-      //   var toast = document.querySelector(".toast");
-      //   toast.show();
-      // };
-    
-      // var toast = document.querySelector(".toast");
-      // toast.addEventListener('show.bs.toast', function (event) {
-      //   toast.show()
-      // })
-      
-
-
 
     </script>
     {% endblock %}
