@@ -83,13 +83,13 @@ def checkout(request):
                             order_line_item.save()
                 except Product.DoesNotExist:
                     messages.error(request, (
-                        "One of the products found in your bag wasn't found in our datsbase. "
+                        "One of the products found in your bag wasn't found in our database. "
                         "Please call us for assistance!")
                     )
                     order.delete()
                     return redirect(reverse('view_bag'))
 
-            request.session['save_info'] = 'save_info' in request.POST
+            request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
             messages.error(request, "There was an error with your form. Please double check your information.")
@@ -106,11 +106,11 @@ def checkout(request):
         stripe.api_key = stripe_secret_key
         intent = stripe.PaymentIntent.create(
             amount=stripe_total,
-            currency=settings.STRIPE_CURRENCY
+            currency=settings.STRIPE_CURRENCY,
         )
 
         # print(intent)
-
+        # Attempt to prefill the form with any info the user maintains in their profile
         if request.user.is_authenticated:
             try:
                 profile = UserProfile.objects.get(user=request.user)
@@ -123,7 +123,7 @@ def checkout(request):
                     'town_or_city': profile.default_town_or_city,
                     'street_address1': profile.default_street_address1,
                     'street_address2': profile.default_street_address2,
-                    'county': profile.default_county
+                    'county': profile.default_county,
                 })
             except UserProfile.DoesNotExist:
                 order_form = OrderForm()
@@ -137,7 +137,7 @@ def checkout(request):
     context = {
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
-        'client_secret': intent.client_secret
+        'client_secret': intent.client_secret,
     }
 
     return render(request, template, context)
@@ -146,7 +146,7 @@ def checkout(request):
 # Checkout Success view:
 def checkout_success(request, order_number):
     """
-    Handle successfull checkouts
+    Handle successful checkouts
     """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
