@@ -177,9 +177,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -197,6 +194,7 @@ DEFAULT_FROM_EMAIL = 'boutiqueado@example.com'
 
 # AWS Settings:
 if 'USE-AWS' in os.environ:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static') 
     # Bucket Config
     AWS_STORAGE_BUCKET_NAME = 'boutique-ado-sb'
     AWS_S3_REGION_NAME = 'eu-west-1'
