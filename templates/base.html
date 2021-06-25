@@ -158,12 +158,17 @@
     {% block postloadjs %}
     <script type="text/javascript">
 
-      function showToast() {
-        var toastEl = document.querySelector(".toast");
-        new bootstrap.Toast(toastEl).show();
-      }
+      // function showToast() {
+      //   var toastEl = document.querySelector(".toast");
+      //   new bootstrap.Toast(toastEl).show();
+      // }
 
-      showToast();
+      // showToast();
+
+      var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+      var toastList = toastElList.map(function (toastEl) {
+        return new bootstrap.Toast(toastEl).show();
+      });
 
     </script>
     {% endblock %}
